@@ -1,28 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
+/*   minitalk.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hhagiwar <hhagiwar@student.42Tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/07 12:07:02 by hhagiwar          #+#    #+#             */
-/*   Updated: 2023/08/05 19:59:13 by hhagiwar         ###   ########.fr       */
+/*   Created: 2023/08/03 15:21:39 by hhagiwar          #+#    #+#             */
+/*   Updated: 2023/08/05 20:00:42 by hhagiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef MINITALK_H
+# define MINITALK_H
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
-{
-	t_list	*t;
+int		ft_printf(const char *arg, ...);
+void	ft_putchar_fd(char c, int fd);
+void	ft_putstr_fd(char *s, int fd);
 
-	if (new == NULL)
-		return ;
-	if (*lst == NULL)
-	{
-		*lst = new;
-		return ;
-	}
-	t = ft_lstlast(*lst);
-	t->next = new;
-}
+#endif

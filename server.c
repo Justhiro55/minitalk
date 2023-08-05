@@ -3,13 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   server.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hhagiwar <hhagiwar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hhagiwar <hhagiwar@student.42Tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 14:47:23 by hhagiwar          #+#    #+#             */
-/*   Updated: 2023/08/02 19:34:34 by hhagiwar         ###   ########.fr       */
+/*   Updated: 2023/08/05 20:23:42 by hhagiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "minitalk.h"
 #include <signal.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -41,12 +42,12 @@ void	bin_to_char(int *bin)
 	i = 0;
 	c = 0;
 	c = binary_to_decimal(bin);
-	printf("char:%c\n", c);
+	ft_putchar_fd(c, 0);
 }
 
 void	signal_handle(int sig)
 {
-	int	*bin;
+	static int	*bin;
 
 	if (bin == NULL)
 		bin = (int *)malloc(sizeof(int) * 8);
@@ -59,23 +60,30 @@ void	signal_handle(int sig)
 	if (g_i == 7)
 	{
 		bin_to_char(bin);
+		free(bin);
+		bin = NULL;
 	}
 	g_i++;
 }
 
 int	main(void)
 {
+	struct sigaction	sa;
+
+	sigemptyset(&sa.sa_mask);
+	sa.sa_handler = signal_handle;
+	sa.sa_flags = 0;
+	sigaction(SIGUSR1, &sa, NULL);
+	sigaction(SIGUSR2, &sa, NULL);
 	g_i = 0;
-	printf("--Server started--\n");
-	printf("PID: %d\n", getpid());
-	signal(SIGUSR1, signal_handle);
-	signal(SIGUSR2, signal_handle);
-	printf("Waiting for signal...\n");
+	// ft_putstr_fd("--Server started--\n", 0);
+	// ft_printf("PID: %d\n", getpid());
+	// ft_putstr_fd("Waiting for signal...\n", 0);
 	while (1)
 	{
-		pause();
 		if (g_i == 8)
 			g_i = 0;
+		pause();
 	}
 	return (0);
 }

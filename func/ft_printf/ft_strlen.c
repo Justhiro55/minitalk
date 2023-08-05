@@ -6,20 +6,20 @@
 /*   By: hhagiwar <hhagiwar@student.42Tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 15:14:59 by hhagiwar          #+#    #+#             */
-/*   Updated: 2023/06/16 10:27:08 by hhagiwar         ###   ########.fr       */
+/*   Updated: 2023/08/05 17:26:07 by hhagiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+// #include "ft_printf.h"
 
-size_t	ft_strlen(const char *s)
-{
-	int	len;
+// size_t	ft_strlen(const char *s)
+// {
+// 	int	len;
 
-	len = 0;
-	while (s[len] != '\0')
-	{
-		len++;
-	}
-	return (len);
-}
+// 	len = 0;
+// 	while (s[len] != '\0')
+// 	{
+// 		len++;
+// 	}
+// 	return (len);
+// }
